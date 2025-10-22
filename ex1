@@ -1,0 +1,36 @@
+.data
+	dolar: .asciiz "Digite O Valor A Ser Convertido: "
+	total: .asciiz "O Total é : "
+.text
+main: 
+	#Texto Dolar:
+	li $v0,4
+	la $a0,dolar
+	syscall
+	
+	#Valor Dólar
+	li $v0,5 #Ler Valores inteiros
+	syscall #Leitor De Instruções
+	move $t0,$v0 #Mover Para t0, o que está para t0
+	
+	li $t1,5 #Valor Do Dolar
+	mul $t3,$t1,$t0 # Multiplicação t0 e t1 e jogar para $t3
+	
+	li $v0,4 #Função Ler String
+	la $a0,total #Pegar Texto Em Total
+	syscall #Leitor De Instruções
+	
+	li $v0,1 #Função Ler Valor Inteiro
+	move $a0,$t3
+	syscall
+	
+	li $v0,10
+	syscall
+	
+	
+	
+	
+	
+	
+	
+	
