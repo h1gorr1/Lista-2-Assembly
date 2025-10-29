@@ -1,0 +1,61 @@
+.data
+	valora: .asciiz "Valor A: "
+	valorb: .asciiz "Valor b: "
+	novovalora: .asciiz "Novo Valor De A: "
+	novovalorb: .asciiz "Novo Valor De b: "
+	linha : .asciiz "\n"
+.text
+main:
+	#Texto Valor De A: 
+	li $v0,4
+	la $a0,valora
+	syscall
+	
+	#Valor De A:
+	li $v0,5
+	syscall
+	move $t0,$v0
+	
+	#Texto Valor De B:
+	li $v0,4
+	la $a0,valorb
+	syscall
+	
+	#Valor De B:
+	li $v0,5
+	syscall
+	move $t1,$v0
+	
+	#Processo Troca:
+	move $t2,$t0
+	move $t0,$t1
+	move $t1,$t2
+	
+	#Texto Novo Valor De A
+	li $v0,4
+	la $a0,novovalora
+	syscall
+	
+	li $v0,1	
+	move $a0,$t0
+	syscall
+	
+	li $v0,4
+	la $a0,linha
+	syscall
+	
+	li $v0,4
+	la $a0,novovalorb
+	syscall
+	
+	li $v0,1
+	move $a0,$t1
+	syscall
+	
+	li $v0,10
+	syscall
+	
+	
+	
+	
+	

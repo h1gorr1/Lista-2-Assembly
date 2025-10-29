@@ -4,6 +4,7 @@
 	dezena: .asciiz "O Valor Total Em Dezena é: "
 	unidade: .asciiz "O Valor Em Unidade é: "
 	linha: .asciiz "\n"
+	denovo: .asciiz "Valor Inválido, Tente Novamente!: "
 	
 .text
 main:
@@ -24,7 +25,23 @@ main:
 	li $t5,0 #Acumulador Dezena
 	li $t6,0 #Acumulador Unidade
 	li $t7,1 #Acrescentar 1
+	li $t8,999
+	j validar_n
+	
+	validar_n:
+	blt $t0,$t1,pedir_denovo
+	bgt $t0,$t8,pedir_denovo
 	j loop_verificar
+	
+	pedir_denovo:
+	li $v0,4
+	la $a0,denovo
+	syscall
+	
+	li $v0,5
+	syscall
+	move $t0,$v0
+	j validar_n
 	
 	loop_verificar:
 	bge $t0,$t1,diminuir_centena #Se For Maior Que 100, Faça isso:
